@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InPackOnPack Web Wireframes - Figma Prototype Viewer</title>
+    <!-- Google Fonts for premium clean typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="figma-theme">
+    <!-- Top Figma Control Bar -->
+    <header class="figma-header">
+        <div class="header-left">
+            <div class="figma-logo">
+                <svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0C5.37258 0 0 5.37258 0 12C0 15.6569 1.634 18.932 4.22502 21.1491C1.634 23.3662 0 26.6413 0 30.2982C0 36.9257 5.37258 42.2982 12 42.2982C18.6274 42.2982 24 36.9257 24 30.2982C24 26.6413 22.366 23.3662 19.775 21.1491C22.366 18.932 24 15.6569 24 12C24 5.37258 18.6274 0 12 0Z" fill="url(#figma-grad)" />
+                    <defs>
+                        <linearGradient id="figma-grad" x1="0" y1="0" x2="24" y2="42" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#333333"/>
+                            <stop offset="0.5" stop-color="#111111"/>
+                            <stop offset="1" stop-color="#000000"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="file-info">
+                <span class="file-name" id="fileName">InPackOnPack Web Wireframes</span>
+                <span class="file-status">Draft / Desktop Web Prototype</span>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="mode-selector">
+                <button class="mode-btn active" id="btnCanvasMode" onclick="setMode('canvas')">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-11zM2.5 2a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-11z"/>
+                        <path d="M4 4h3v3H4V4zm5 0h3v3H9V4zm-5 5h3v3H4V9zm5 0h3v3H9V9z"/>
+                    </svg>
+                    Design Canvas
+                </button>
+                <button class="mode-btn" id="btnPrototypeMode" onclick="setMode('prototype')">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M11.5 1a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 11.5 15h1a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 12.5 1h-1zM11 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-11zM5.5 1a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 5.5 15h1A1.5 1.5 0 0 0 8 13.5v-11A1.5 1.5 0 0 0 6.5 1h-1zM5 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-11z"/>
+                    </svg>
+                    Prototype Play
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <button class="share-btn" onclick="openShareModal()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                Share Link
+            </button>
+            <div class="zoom-controls">
+                <button onclick="zoomOut()">−</button>
+                <span id="zoomLevel">60%</span>
+                <button onclick="zoomIn()">+</button>
+                <button class="reset-zoom" onclick="resetZoom()">Fit</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="figma-workspace">
+        <!-- Left Panel: Pages & Screens List -->
+        <aside class="figma-sidebar left-panel">
+            <div class="panel-section">
+                <div class="panel-header">
+                    <span>Web Pages & Flows</span>
+                    <span class="count" id="screenCount">20</span>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="screenSearch" placeholder="Search pages..." oninput="filterScreens()">
+                </div>
+                
+                <div class="flow-category">
+                    <div class="category-title" onclick="toggleCategory('flow-user')">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        <span>Consumer Web Portal</span>
+                    </div>
+                    <ul class="screen-list" id="flow-user-list">
+                        <!-- User screens dynamically populated -->
+                    </ul>
+                </div>
+
+                <div class="flow-category">
+                    <div class="category-title" onclick="toggleCategory('flow-admin')">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                        <span>Admin Web Portal</span>
+                    </div>
+                    <ul class="screen-list" id="flow-admin-list">
+                        <!-- Admin screens dynamically populated -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="panel-section helpers">
+                <div class="panel-header">
+                    <span>Hotspot Helper</span>
+                </div>
+                <div class="helper-card">
+                    <p class="small-text">In <strong>Prototype Play</strong>, click anywhere on the web page to flash interactive hotspots in blue.</p>
+                    <button class="small-btn" onclick="toggleHotspots()">Highlight Hotspots</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Central Workspace Canvas -->
+        <main class="figma-canvas-area" id="canvasArea">
+            
+            <!-- CANVAS MODE: Layout of all 20 screens side-by-side with pan/zoom -->
+            <div class="canvas-viewport" id="canvasViewport">
+                <div class="canvas-container" id="canvasContainer">
+                    <svg class="canvas-svg-overlay" id="svgOverlay"></svg>
+                    
+                    <!-- Web User Flow Section on Canvas -->
+                    <div class="flow-group" id="userFlowGroup">
+                        <div class="flow-group-title">Consumer Web Portal Flows</div>
+                        <div class="flow-grid" id="userFlowGrid"></div>
+                    </div>
+                    
+                    <!-- Web Admin Flow Section on Canvas -->
+                    <div class="flow-group" id="adminFlowGroup">
+                        <div class="flow-group-title">Admin Management System Flows</div>
+                        <div class="flow-grid" id="adminFlowGrid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROTOTYPE MODE: Centered Desktop Browser mockup -->
+            <div class="prototype-viewport hidden" id="prototypeViewport">
+                <div class="prototype-wrapper">
+                    <!-- Browser Window Mockup Container -->
+                    <div class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <span class="dot close"></span>
+                                <span class="dot minimize"></span>
+                                <span class="dot expand"></span>
+                            </div>
+                            <div class="browser-nav">
+                                <button class="nav-arrow" id="btnPrevScreen" onclick="prevPrototypeScreen()">←</button>
+                                <button class="nav-arrow" disabled>→</button>
+                                <button class="nav-reload" onclick="restartPrototype()">⟳</button>
+                            </div>
+                            <div class="browser-address">
+                                <span class="address-lock">🔒</span>
+                                <span class="address-text" id="mockBrowserUrl">https://inpackonpack.com/splash</span>
+                            </div>
+                            <div style="width: 80px;"></div>
+                        </div>
+                        
+                        <div class="browser-screen-container">
+                            <!-- Current interactive screen content goes here -->
+                            <div class="browser-screen" id="phoneScreen">
+                                <!-- Loaded dynamically via app.js -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Controller Info panel -->
+                    <div class="prototype-controller">
+                        <div class="screen-title-badge">
+                            <span class="label">Web Page</span>
+                            <span class="value" id="protoScreenName">01 Splash Landing</span>
+                        </div>
+                        <div class="controller-buttons">
+                            <button onclick="restartPrototype()" title="Reset Session">
+                                ⟳ Restart Flow
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+
+        <!-- Right Panel: Screen specs & Properties -->
+        <aside class="figma-sidebar right-panel">
+            <div class="panel-section" id="propertiesPanel">
+                <div class="panel-header">
+                    <span>Inspect Specs</span>
+                </div>
+                <div class="inspect-details">
+                    <div class="spec-row">
+                        <span class="spec-label">File Type</span>
+                        <span class="spec-value font-mono">Desktop Web Portal</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Frame Size</span>
+                        <span class="spec-value font-mono">1280 x 720 px (Widescreen)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Colors Used</span>
+                        <div class="color-chips">
+                            <span class="color-chip" style="background:#ffffff;" title="White: #FFFFFF"></span>
+                            <span class="color-chip" style="background:#f3f4f6;" title="Light Gray: #F3F4F6"></span>
+                            <span class="color-chip" style="background:#d1d5db;" title="Medium Gray: #D1D5DB"></span>
+                            <span class="color-chip" style="background:#111827;" title="Black: #111827"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="panel-header">
+                    <span>Interaction Links</span>
+                </div>
+                <div class="interaction-list-container">
+                    <p class="small-text font-italic" id="interactionDefaultText">Select a hotspot to trace transition flows.</p>
+                    <ul class="interaction-links" id="interactionLinksList">
+                        <!-- Dynamic list of connections for selected screen -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel-section about-card">
+                <div class="panel-header">
+                    <span>B&W Wireframing</span>
+                </div>
+                <div class="about-content text-muted">
+                    <p>Designed strictly using white, gray, and black layout shapes to direct client focus onto elements, functions, and responsive structures without aesthetic color bias.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Client Share Dialog Modal -->
+    <div class="figma-modal-backdrop hidden" id="shareModal">
+        <div class="figma-modal">
+            <div class="modal-header">
+                <h3>Share Desktop Wireframes</h3>
+                <button class="close-btn" onclick="closeShareModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>You can bundle these static desktop web wireframes and share them with the client. It contains all 20 web layouts and clickable flows.</p>
+                <div class="copy-link-container">
+                    <input type="text" id="shareUrlInput" value="" readonly>
+                    <button onclick="copyShareLink()">Copy URL</button>
+                </div>
+                <p class="small-text success-message hidden" id="copySuccessMsg">Link copied to clipboard!</p>
+                <div class="share-options mt-4">
+                    <strong>Widescreen Features:</strong>
+                    <ul>
+                        <li>✨ Fully Interactive HTML Desktop mockups</li>
+                        <li>✨ Desktop Browser frame viewport with mock lock icon</li>
+                        <li>✨ Dynamic Canvas mapping lines linking click hotspots</li>
+                        <li>✨ Zoom controls supporting 1280px wide widescreen layout views</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="primary-btn" onclick="closeShareModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
